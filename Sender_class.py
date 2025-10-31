@@ -54,3 +54,13 @@ def err_rate_calculation(key_a, key_b):
     err_rate = error/len(key_a)
     return err_rate
 
+def measure_qubits(circuits, bases):
+    measured_circuits = []
+    for qc, basis in zip(circuits, bases):
+        measured_qc = qc.copy()
+        if basis == 1:  # For X-basis, apply H before measurement.
+            measured_qc.h(0)
+        measured_qc.measure(0, 0)
+        measured_circuits.append(measured_qc)
+    return measured_circuits
+
