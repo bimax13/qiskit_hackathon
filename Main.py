@@ -9,18 +9,17 @@ Bob = Terminal()
 
 Alice.GenBasis(nbits)
 Alice.GenQbits()
-
 Channel.SendQbits(Alice, Bob)
-print("Alice and Bob have same Qbits:", Alice.qbits == Bob.qbits)
 
 Bob.GenBasis(nbits)
+Bob.MeasureQbits()
 
+Channel.SendBasis(Bob, Alice)
+Channel.SendBasis(Alice, Bob)
 
-print("Alice's Basis:", Alice.basis)
-print("Bob's Basis:  ", Bob.basis)
-
-
-sift = BB84.getMatchingIndexes(Alice.basis, Bob.basis, [0,1,0,1,0,1,0,1,0,1])
-key = BB84.siftAndMakeKey(Alice.basis, Bob.basis, [0,1,0,1,0,1,0,1,0,1])
-print(sift)
-print(key)
+Alice.SiftAndMakeKey()
+Bob.SiftAndMakeKey()
+print("Alice's Sent bits:",Alice.cbits)
+print("Bob's Measured:   ",Bob.cbits)
+print("Alice's Key:      ",Alice.key)
+print("Bob's Key:        ",Bob.key)
