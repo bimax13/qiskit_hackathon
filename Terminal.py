@@ -9,6 +9,7 @@ class Terminal:
     otherBasis = None
     qbits = None
     cbits = None # aka measured bits
+    otherErrBits = None
         
     def GenBasis(self, n):
         self.basis = BB84.GenBasis(n)
@@ -38,4 +39,9 @@ class Terminal:
         
     def SiftAndMakeKey(self):
         self.key = [bit for i, bit in enumerate(self.cbits) if self.basis[i] == self.otherBasis[i]]
+
+    # def err_rate_calculation(self):
+    #     error = sum(a != b for a,b in zip(self.otherErrBits, self.key[0:(len(self.key)/3)]) )
+    #     err_rate = error/len(self.otherErrBits)
+    #     return err_rate
 

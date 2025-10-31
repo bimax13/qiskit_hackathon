@@ -2,9 +2,9 @@ import BB84
 from Terminal import Terminal
 import Channel
 
-nbits = 10
+nbits = 20
 noise = "none"
-intercept = True
+intercept = False
 
 Alice = Terminal()
 Bob = Terminal()
@@ -23,7 +23,5 @@ Alice.SiftAndMakeKey()
 Bob.SiftAndMakeKey()
 
 
-print("Alice's Sent bits:",Alice.cbits)
-print("Bob's Measured:   ",Bob.cbits)
-print("Alice's Key:      ",Alice.key)
-print("Bob's Key:        ",Bob.key)
+print("Alice's Key: ",Alice.key)
+print("Bob's Key:   ",Bob.key)

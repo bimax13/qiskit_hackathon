@@ -20,4 +20,5 @@ def SendQbits(fromA: Terminal, toB: Terminal, intercept: bool, noise_type: str =
 def SendBasis(fromA : Terminal, toB : Terminal):
     toB.otherBasis = fromA.basis
 
-
+# def SendBasis(fromA : Terminal, toB : Terminal):
+#     toB.otherBasis = fromA.basis
