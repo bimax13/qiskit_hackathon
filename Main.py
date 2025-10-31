@@ -3,14 +3,15 @@ from Terminal import Terminal
 import Channel
 
 nbits = 10
-noise = "bit-flip"
+noise = "none"
+intercept = True
 
 Alice = Terminal()
 Bob = Terminal()
 
 Alice.GenBasis(nbits)
 Alice.GenQbits()
-Channel.SendQbits(Alice, Bob, noise)
+Channel.SendQbits(Alice, Bob, intercept, noise)
 
 Bob.GenBasis(nbits)
 Bob.MeasureQbits()
