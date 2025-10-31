@@ -64,3 +64,14 @@ def measure_qubits(circuits, bases):
         measured_circuits.append(measured_qc)
     return measured_circuits
 
+def eavesdrop(circuits, eve_bases):
+    intercepted = []
+    for qc, basis in zip(circuits, eve_bases):
+        new_qc = qc.copy()
+        if basis == 1:
+            new_qc.h(0)
+        new_qc.measure(0, 0)
+        # simulate collapse + resend
+        intercepted.append(new_qc)
+    return intercepted
+
