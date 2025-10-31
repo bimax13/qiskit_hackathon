@@ -47,3 +47,10 @@ def get_index_same_elements(base_a, base_b, bits):
 
 def filter_unlikely_element(base_a, base_b, bits):
     return[bit for i, bit in enumerate(bits) if base_a[i] == base_b[i]]
+
+
+def err_rate_calculation(key_a, key_b):
+    error = sum(a != b for a,b in zip(key_a, key_b) )
+    err_rate = error/len(key_a)
+    return err_rate
+
