@@ -3,13 +3,14 @@ from Terminal import Terminal
 import Channel
 
 nbits = 10
+noise = "bit-flip"
 
 Alice = Terminal()
 Bob = Terminal()
 
 Alice.GenBasis(nbits)
 Alice.GenQbits()
-Channel.SendQbits(Alice, Bob)
+Channel.SendQbits(Alice, Bob, noise)
 
 Bob.GenBasis(nbits)
 Bob.MeasureQbits()
@@ -19,6 +20,8 @@ Channel.SendBasis(Alice, Bob)
 
 Alice.SiftAndMakeKey()
 Bob.SiftAndMakeKey()
+
+
 print("Alice's Sent bits:",Alice.cbits)
 print("Bob's Measured:   ",Bob.cbits)
 print("Alice's Key:      ",Alice.key)

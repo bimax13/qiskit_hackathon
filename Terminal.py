@@ -17,23 +17,17 @@ class Terminal:
         self.cbits = BB84.GenBitArr(len(self.basis))
         self.qbits = BB84.GenQbits(self.cbits, self.basis)
 
-    def MeasureQbits(self, noise_type: str = "none", noise_prob: float = 0.05):
+    def MeasureQbits(self):
         backend = AerSimulator()
         measured_bits = []
-
         for qc, basis in zip(self.qbits, self.basis):
-            noisy_qc = qc.copy()
-
-            # Apply optional noise
-            noisy_qc = BB84.apply_noise(noisy_qc, noise_type, noise_prob)
-
             # Apply Bob's measurement basis
             if basis == 1:  # X-basis
-                noisy_qc.h(0)
+                qc.h(0)
 
             # Measure
-            noisy_qc.measure(0, 0)
-            transpiled_qc = transpile(noisy_qc, backend)
+            qc.measure(0, 0)
+            transpiled_qc = transpile(qc, backend)
             job = backend.run(transpiled_qc, shots=1, memory=True)
             result = job.result()
             bit = int(result.get_memory()[0])

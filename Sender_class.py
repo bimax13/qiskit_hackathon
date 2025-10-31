@@ -1,5 +1,4 @@
-from qiskit import *
-import qiskit_aer
+from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit.visualization import plot_histogram
 import matplotlib.pyplot as plt

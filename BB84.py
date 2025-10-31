@@ -1,4 +1,4 @@
-from qiskit import *
+from qiskit import QuantumCircuit
 import numpy as np
 from typing import List, Tuple
 from qiskit_aer import AerSimulator
